@@ -51,8 +51,8 @@ Substitua `seu@email.com` pelo seu e-mail real no arquivo `pages/index.js`.
 Na seção do hero ou no nav, adicione seus links:
 
 ```jsx
-<a href="https://github.com/seuusuario">GitHub</a>
-<a href="https://linkedin.com/in/seuperfil">LinkedIn</a>
+<a href="https://github.com/PedroAquin0">GitHub</a>
+<a href="https://linkedin.com/in/pedroaquinoit">LinkedIn</a>
 ```
 
 ## Deploy na Vercel

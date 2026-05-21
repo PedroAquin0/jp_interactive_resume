@@ -211,7 +211,7 @@ export default function Home() {
         <div className={styles.navLinks}>
           <a href="#projetos">Projetos</a>
           <a href="#skills">Skills</a>
-          <a href="mailto:seu@email.com" className={styles.navCta}>Contato</a>
+          <a href="mailto:pedroaquinodev@email.com" className={styles.navCta}>Contato</a>
         </div>
       </nav>
 
@@ -234,7 +234,7 @@ export default function Home() {
             </p>
             <div className={styles.heroActions}>
               <a href="#projetos" className={styles.btnPrimary}>Ver projetos</a>
-              <a href="mailto:seu@email.com" className={styles.btnSecondary}>Entre em contato</a>
+              <a href="mailto:pedroaquinodev@email.com" className={styles.btnSecondary}>Entre em contato</a>
             </div>
           </div>
           <div className={styles.heroVisual} aria-hidden>
@@ -296,7 +296,7 @@ export default function Home() {
               <p className={styles.ctaDesc}>
                 Estou aberto a conversas sobre posições de engenharia de dados, arquitetura de dados ou consultoria.
               </p>
-              <a href="mailto:seu@email.com" className={styles.btnPrimary}>
+              <a href="mailto:pedroaquinodev@email.com" className={styles.btnPrimary}>
                 Falar comigo →
               </a>
             </div>
