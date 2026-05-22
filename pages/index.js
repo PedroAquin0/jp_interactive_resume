@@ -281,7 +281,6 @@ export default function Home() {
                 alt="Advantages of Gen AI & LLM on Databricks"
                 className={styles.certBadge}
               />
-                src
             </div>
           </div>
         </div>
