@@ -10,9 +10,10 @@ const PROJECTS = [
     subtitle: 'Plataforma de ingestão e processamento de dados para com +20 eventos/dia teve seu custo cortado em 90%',
     description:
       'Arquitetura medallion (Bronze → Silver → Gold) orquestrava 8 glue jobs no total. 1 job para camada bronze (JDBC conectado no SQL) e 7 para camada silver. A lógica de processamento via pyspark foi atualizada para pyarrow, manipulando o que já havia no catálogo utilizando Athena. Resultando em um custo reduzido drasticamente',
-    stack: ['AWS', 'Glue', 'StepFunction', 'Lambda', 'Unity Catalog'],
+    stack: ['AWS', 'Glue', 'StepFunction', 'Lambda', 'PySpark', 'PyArrow'],
     metrics: [
       { label: 'Eventos/dia', value: '20+' },
+      { label: 'Tempo de execução por tabela', value: '30s'},
       { label: 'Redução de custo', value: '~90%' },
     ],
     color: 'purple',
@@ -24,23 +25,20 @@ const PROJECTS = [
   },
   {
     id: 2,
-    tag: 'Streaming',
-    title: 'Pipeline Real-Time de Fraude',
-    subtitle: 'Detecção de fraude em transações financeiras com latência sub-segundo',
+    tag: 'Data Platform',
+    title: 'Pipeline API até DataWarehouse',
+    subtitle: 'Plataforma de ingestão de processamento de dados de medicina ocupacional',
     description:
-      'Sistema de detecção de fraude em tempo real usando Flink e Kafka Streams. Modelos de ML servidos via Feast feature store. Processamento de 120K transações/minuto com SLA de 200ms end-to-end.',
-    stack: ['Apache Flink', 'Kafka', 'Feast', 'Redis', 'Python', 'Kubernetes'],
+      'Lambda que fazia consumo de 3 API`s para buscar tabelas via GETURL+Token, orquestrando jobs glue e crawlers que levam os dados até AWS Redshift',
+    stack: ['Python Requests', 'PySpark' ,'Glue', 'Crawler', 'Redshift', 'Starschema'],
     metrics: [
-      { label: 'Transações/min', value: '120K' },
-      { label: 'Latência E2E', value: '< 200ms' },
-      { label: 'Precisão ML', value: '98.7%' },
+      { label: 'Equipes impactadas', value: '20+' }
     ],
-    color: 'teal',
+    color: 'Purple',
     architecture: [
-      { layer: 'Fonte', items: ['POS Systems', 'Mobile Apps', 'Web'], color: '#5de0c8' },
-      { layer: 'Stream', items: ['Kafka Topics', 'Flink Jobs', 'State Store'], color: '#3dbba8' },
-      { layer: 'ML', items: ['Feast', 'Redis Cache', 'Model Serving'], color: '#5de0c8' },
-      { layer: 'Saída', items: ['Alertas', 'Block/Allow', 'Audit Log'], color: '#2da890' },
+      { layer: 'Ingestão', items: ['Python Requests', 'Lambda'], color: '#7c6af7' },
+      { layer: 'Silver/Gold', items: ['Glue'], color: '#5a5070' },
+      { layer: 'Starschema', items: ['Glue', 'Redshift'], color: '#9370db' },
     ],
   },
   {
