@@ -281,6 +281,16 @@ export default function Home() {
                 alt="Advantages of Gen AI & LLM on Databricks"
                 className={styles.certBadge}
               />
+              <img
+                src="/certs/lakehouse_fundamentals.png"
+                alt="Databricks Lakehouse Fundamentals"
+                className={styles.certBadge}
+              />
+              <img
+                src="/certs/cloud_economics.png"
+                alt="AWS Cloud Economics Essentials"
+                className={styles.certBadge}
+              />
             </div>
           </div>
         </div>
@@ -306,9 +316,6 @@ export default function Home() {
             <div className={styles.sectionHeader}>
               <span className={styles.sectionTag}>Projetos</span>
               <h2 className={styles.sectionTitle}>Arquiteturas em produção</h2>
-              <p className={styles.sectionDesc}>
-                Soluções de dados que movem agulhas reais — não demos, não POCs.
-              </p>
             </div>
             <div className={styles.grid}>
               {PROJECTS.map(p => <ProjectCard key={p.id} project={p} />)}
