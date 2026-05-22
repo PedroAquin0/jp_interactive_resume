@@ -211,9 +211,11 @@ export default function Home() {
       </nav>
 
       <main>
-        {/* Hero */}
-        <section className={styles.hero}>
-          <div className={styles.heroGlow} aria-hidden />
+      {/* Hero */}
+      <section className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden />
+        <div className={styles.heroWrapper}>
+          {/* Left */}
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <span className={styles.heroDot} />
@@ -228,21 +230,65 @@ export default function Home() {
               lakehouses corporativos. Foco em arquiteturas que suportam decisões críticas de negócio.
             </p>
             <div className={styles.heroActions}>
-              <a href="#projetos" className={styles.btnPrimary}>Ver projetos</a>
-              <a href="mailto:pedroaquinodev@email.com" className={styles.btnSecondary}>Entre em contato</a>
+              <a href="#projetos" className={styles.btnPrimary}>
+                Ver projetos
+              </a>
+
+              <a
+                href="mailto:pedroaquinodev@email.com"
+                className={styles.btnSecondary}
+              >
+                Entre em contato
+              </a>
             </div>
           </div>
-          <div className={styles.heroVisual} aria-hidden>
-            <div className={styles.heroGrid}>
-              {Array.from({ length: 64 }).map((_, i) => (
-                <div key={i} className={styles.heroCell} style={{
+
+          {/* Right - Certifications */}
+          <div className={styles.certifications}>
+            <span className={styles.certTitle}>Certificações</span>
+
+            <div className={styles.certGrid}>
+              <img
+                src="/certs/aws_pract.png"
+                alt="AWS Cloud Practitioner"
+                className={styles.certBadge}
+              />
+
+              <img
+                src="/certs/Scrum_Foundational.png"
+                alt="Scrum Foundation Professional Certificate"
+                className={styles.certBadge}
+              />
+
+              <img
+                src="/certs/databricks_accreditations.png"
+                alt="Databicks Partner Accreditations"
+                className={styles.certBadge}
+              />
+
+              <img
+                src="/certs/aws_technical.png"
+                alt="AWS Partner Accreditations"
+                className={styles.certBadge}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={styles.heroVisual} aria-hidden>
+          <div className={styles.heroGrid}>
+            {Array.from({ length: 64 }).map((_, i) => (
+              <div
+                key={i}
+                className={styles.heroCell}
+                style={{
                   animationDelay: `${Math.random() * 4}s`,
                   animationDuration: `${3 + Math.random() * 3}s`
-                }} />
-              ))}
-            </div>
+                }}
+              />
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Projects */}
         <section id="projetos" className={styles.section}>
