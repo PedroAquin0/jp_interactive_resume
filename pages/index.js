@@ -6,22 +6,20 @@ const PROJECTS = [
   {
     id: 1,
     tag: 'Data Platform',
-    title: 'Lakehouse de Dados em Escala',
-    subtitle: 'Plataforma de ingestão e processamento de dados para +50M eventos/dia',
+    title: 'Reestruturação de arquitetura',
+    subtitle: 'Plataforma de ingestão e processamento de dados para com +20 eventos/dia teve seu custo cortado em 90%',
     description:
-      'Arquitetura medallion (Bronze → Silver → Gold) sobre Delta Lake no Azure. Orquestração via Databricks com Auto Loader para ingestão contínua de streams. Redução de 70% no custo de armazenamento vs data warehouse legado.',
-    stack: ['Databricks', 'Delta Lake', 'Azure Data Factory', 'PySpark', 'Unity Catalog'],
+      'Arquitetura medallion (Bronze → Silver → Gold) orquestrava 8 glue jobs no total. 1 job para camada bronze (JDBC conectado no SQL) e 7 para camada silver. A lógica de processamento via pyspark foi atualizada para pyarrow, manipulando o que já havia no catálogo utilizando Athena. Resultando em um custo reduzido drasticamente',
+    stack: ['AWS', 'Glue', 'StepFunction', 'Lambda', 'Unity Catalog'],
     metrics: [
-      { label: 'Eventos/dia', value: '50M+' },
-      { label: 'Latência p99', value: '< 4s' },
-      { label: 'Redução de custo', value: '70%' },
+      { label: 'Eventos/dia', value: '20+' },
+      { label: 'Redução de custo', value: '~90%' },
     ],
     color: 'purple',
     architecture: [
-      { layer: 'Ingestão', items: ['Kafka', 'Event Hubs', 'APIs REST'], color: '#7c6af7' },
-      { layer: 'Bronze', items: ['Auto Loader', 'Schema Inference', 'Raw Delta'], color: '#5a5070' },
-      { layer: 'Silver', items: ['Dedup', 'Validação', 'PII Masking'], color: '#9370db' },
-      { layer: 'Gold', items: ['Agregações', 'Feature Store', 'BI Layer'], color: '#7c6af7' },
+      { layer: 'Ingestão', items: ['StepFunction'], color: '#7c6af7' },
+      { layer: 'Bronze', items: ['Glue JDBC to SQL'], color: '#5a5070' },
+      { layer: 'Silver', items: ['Lambda'], color: '#9370db' }    
     ],
   },
   {
