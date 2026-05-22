@@ -35,7 +35,7 @@ const PROJECTS = [
       { label: 'Latência E2E', value: '< 200ms' },
       { label: 'Precisão ML', value: '98.7%' },
     ],
-    color: 'Purple',
+    color: 'leal',
     architecture: [
       { layer: 'Fonte', items: ['POS Systems', 'Mobile Apps', 'Web'], color: '#5de0c8' },
       { layer: 'Stream', items: ['Kafka Topics', 'Flink Jobs', 'State Store'], color: '#3dbba8' },
