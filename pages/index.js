@@ -24,7 +24,7 @@ const PROJECTS = [
   },
   {
     id: 2,
-    tag: 'Streaming',
+    tag: 'Data Platform',
     title: 'Pipeline Real-Time de Fraude',
     subtitle: 'Detecção de fraude em transações financeiras com latência sub-segundo',
     description:
@@ -35,7 +35,7 @@ const PROJECTS = [
       { label: 'Latência E2E', value: '< 200ms' },
       { label: 'Precisão ML', value: '98.7%' },
     ],
-    color: 'teal',
+    color: 'Purple',
     architecture: [
       { layer: 'Fonte', items: ['POS Systems', 'Mobile Apps', 'Web'], color: '#5de0c8' },
       { layer: 'Stream', items: ['Kafka Topics', 'Flink Jobs', 'State Store'], color: '#3dbba8' },
