@@ -271,6 +271,17 @@ export default function Home() {
                 alt="AWS Partner Accreditations"
                 className={styles.certBadge}
               />
+              <img
+                src="/certs/advantages_azure_databricks.png"
+                alt="Advantages of Azure Databricks & Microsoft Fabric"
+                className={styles.certBadge}
+              />
+              <img
+                src="/certs/gen_ai_llm.png"
+                alt="Advantages of Gen AI & LLM on Databricks"
+                className={styles.certBadge}
+              />
+                src
             </div>
           </div>
         </div>
