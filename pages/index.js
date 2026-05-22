@@ -24,7 +24,7 @@ const PROJECTS = [
   },
   {
     id: 2,
-    tag: 'Data Platform',
+    tag: 'Data Platform 2',
     title: 'Pipeline Real-Time de Fraude',
     subtitle: 'Detecção de fraude em transações financeiras com latência sub-segundo',
     description:
