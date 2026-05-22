@@ -219,7 +219,7 @@ export default function Home() {
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <span className={styles.heroDot} />
-              Disponível para oportunidades
+              Disponível para oportunidades PJ
             </div>
             <h1 className={styles.heroTitle}>
               Engenheiro<br />
