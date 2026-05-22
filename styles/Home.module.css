@@ -618,7 +618,7 @@
 
 .heroWrapper {
   display: grid;
-  grid-template-columns: 2.0fr 0.8fr;
+  grid-template-columns: 3.0fr 1.8fr;
   gap: 48px;
   align-items: center;
   position: relative;
