@@ -39,49 +39,7 @@ const PROJECTS = [
       { layer: 'Silver/Gold', items: ['Glue'], color: '#5a5070' },
       { layer: 'Starschema', items: ['Glue', 'Redshift'], color: '#9370db' },
     ],
-  },
-  {
-    id: 3,
-    tag: 'Analytics Engineering',
-    title: 'dbt Semantic Layer Corporativo',
-    subtitle: 'Modelagem dimensional unificada para 12 áreas de negócio',
-    description:
-      'Implementação de Data Vault 2.0 como camada de staging e dbt para modelos dimensionais. Mais de 300 modelos versionados, testes automatizados e documentação gerada. Adoção de dbt Semantic Layer para métricas consistentes em todos os dashboards.',
-    stack: ['dbt Core', 'Snowflake', 'Data Vault 2.0', 'Great Expectations', 'Airflow', 'Metabase'],
-    metrics: [
-      { label: 'Modelos dbt', value: '300+' },
-      { label: 'Cobertura de testes', value: '94%' },
-      { label: 'Áreas de negócio', value: '12' },
-    ],
-    color: 'amber',
-    architecture: [
-      { layer: 'Fontes', items: ['ERP', 'CRM', 'SaaS APIs', 'Files'], color: '#f7b26a' },
-      { layer: 'Staging', items: ['Data Vault', 'Hubs', 'Links', 'Sats'], color: '#d4904a' },
-      { layer: 'Marts', items: ['dbt Models', 'Sem. Layer', 'Testes'], color: '#f7b26a' },
-      { layer: 'Consumo', items: ['BI Tools', 'Data Apps', 'APIs'], color: '#d4904a' },
-    ],
-  },
-  {
-    id: 4,
-    tag: 'DataOps',
-    title: 'Plataforma de Observabilidade de Dados',
-    subtitle: 'Monitoramento end-to-end de qualidade, linhagem e SLAs de pipelines',
-    description:
-      'Construção de plataforma interna de observabilidade de dados integrando OpenLineage para rastreamento de linhagem, Monte Carlo para qualidade, e dashboards customizados de SLA. Reduziu MTTR de incidentes de dados de 4h para 25min.',
-    stack: ['OpenLineage', 'Marquez', 'Great Expectations', 'Monte Carlo', 'Grafana', 'Prometheus'],
-    metrics: [
-      { label: 'MTTR', value: '25min' },
-      { label: 'Pipelines monit.', value: '800+' },
-      { label: 'Uptime SLA', value: '99.9%' },
-    ],
-    color: 'coral',
-    architecture: [
-      { layer: 'Coleta', items: ['OpenLineage', 'Custom Hooks', 'Airflow'], color: '#f76a7c' },
-      { layer: 'Armazena', items: ['Marquez', 'TimeSeries DB', 'S3'], color: '#d44a5a' },
-      { layer: 'Análise', items: ['Linhagem', 'Qualidade', 'Alertas'], color: '#f76a7c' },
-      { layer: 'Visib.', items: ['Grafana', 'Slack', 'PagerDuty'], color: '#d44a5a' },
-    ],
-  },
+  }
 ]
 
 const SKILLS = [
