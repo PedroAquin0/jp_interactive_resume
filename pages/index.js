@@ -43,12 +43,11 @@ const PROJECTS = [
 ]
 
 const SKILLS = [
-  { category: 'Linguagens', items: ['Python', 'SQL', 'Scala', 'Bash'] },
-  { category: 'Orquestração', items: ['Apache Airflow', 'Prefect', 'Dagster'] },
-  { category: 'Processamento', items: ['Apache Spark', 'Apache Flink', 'dbt'] },
-  { category: 'Cloud', items: ['AWS', 'Azure', 'GCP'] },
-  { category: 'Storage', items: ['Delta Lake', 'Apache Iceberg', 'Snowflake', 'BigQuery'] },
-  { category: 'Streaming', items: ['Apache Kafka', 'Kinesis', 'Pub/Sub'] },
+  { category: 'Linguagens', items: ['Python', 'SQL', 'Terraform'] },
+  { category: 'Orquestração', items: ['StepFunction', 'Glue Workflow'] },
+  { category: 'Processamento', items: ['Apache Spark', 'Pyarrow', 'dbt'] },
+  { category: 'Cloud', items: ['AWS', 'DataBricks'] },
+  { category: 'Storage', items: ['Delta Lake', 'Glue Catalog', 'Redshift'] }
 ]
 
 function ArchDiagram({ layers }) {
