@@ -39,6 +39,24 @@ const PROJECTS = [
       { layer: 'Silver/Gold', items: ['Glue'], color: '#5a5070' },
       { layer: 'Starschema', items: ['Glue', 'Redshift'], color: '#9370db' },
     ],
+  },
+  {
+    id: 3,
+    tag: 'Data Platform',
+    title: 'SAP -> DLT -> Unity Catalog',
+    subtitle: 'Mecanismo de captura de dados CDC até o databricks',
+    description:
+      'Configuração do Software Aecorsoft para captura de atualizações em tabelas SAP e exportação para catálogo Databricks, anexado ao Delta Live Tables',
+    stack: ['Aecorsoft', 'Databricks' ,'DLT', 'Python'],
+    metrics: [
+      { label: 'POC`s comerciais usadas', value: '5+' }
+    ],
+    color: 'purple',
+    architecture: [
+      { layer: 'Ingestão', items: ['SAP', 'Aecorsoft'], color: '#7c6af7' },
+      { layer: 'Silver', items: ['DLT'], color: '#5a5070' },
+      { layer: 'Starschema', items: ['Unity Catalog'], color: '#9370db' },
+    ],
   }
 ]
 
