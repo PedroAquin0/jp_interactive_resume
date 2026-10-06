@@ -59,6 +59,34 @@
   gap: 2rem;
 }
 
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border: 1px solid var(--border-2);
+  border-radius: 6px;
+}
+
+.languageButton,
+.languageActive {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.25rem 0.45rem;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.languageButton:hover,
+.languageActive {
+  color: var(--text);
+  background: rgba(124,106,247,0.18);
+}
+
 .navLinks a {
   font-size: 14px;
   color: var(--text-2);

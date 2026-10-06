@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const PROJECTS = [
@@ -68,6 +68,68 @@ const SKILLS = [
   { category: 'Storage', items: ['Delta Lake', 'Glue Catalog', 'Redshift'] }
 ]
 
+const PROJECTS_EN = [
+  {
+    id: 1,
+    tag: 'Data Platform',
+    title: 'Architecture redesign',
+    subtitle: 'Data ingestion and processing platform handling 20+ events/day with a 90% cost reduction',
+    description:
+      'A medallion architecture (Bronze → Silver → Gold) orchestrated 8 Glue jobs in total: 1 job for the Bronze layer (JDBC connected to SQL) and 7 for the Silver layer. The PySpark processing logic was updated to PyArrow, manipulating existing catalog data through Athena, resulting in a drastic cost reduction.',
+    stack: ['AWS', 'Glue', 'StepFunction', 'Lambda', 'Unity Catalog'],
+    metrics: [
+      { label: 'Events/day', value: '20+' },
+      { label: 'Cost reduction', value: '~90%' },
+    ],
+    color: 'purple',
+    architecture: [
+      { layer: 'Ingestion', items: ['StepFunction'], color: '#7c6af7' },
+      { layer: 'Bronze', items: ['Glue JDBC to SQL'], color: '#5a5070' },
+      { layer: 'Silver', items: ['Lambda'], color: '#9370db' }
+    ],
+  },
+  {
+    id: 2,
+    tag: 'Data Platform',
+    title: 'API to Data Warehouse pipeline',
+    subtitle: 'Occupational medicine data ingestion and processing platform',
+    description:
+      'A Lambda function consumed 3 APIs to retrieve tables through GET URLs and tokens, orchestrating Glue jobs and crawlers that delivered the data to AWS Redshift.',
+    stack: ['Python Requests', 'PySpark', 'Glue', 'Crawler', 'Redshift', 'Star schema'],
+    metrics: [{ label: 'Teams impacted', value: '20+' }],
+    color: 'purple',
+    architecture: [
+      { layer: 'Ingestion', items: ['Python Requests', 'Lambda'], color: '#7c6af7' },
+      { layer: 'Silver/Gold', items: ['Glue'], color: '#5a5070' },
+      { layer: 'Star schema', items: ['Glue', 'Redshift'], color: '#9370db' },
+    ],
+  },
+  {
+    id: 3,
+    tag: 'Data Platform',
+    title: 'SAP → DLT → Unity Catalog',
+    subtitle: 'CDC data capture mechanism connected to Databricks',
+    description:
+      'Configuration of Aecorsoft software to capture updates in SAP tables and export them to the Databricks catalog, connected to Delta Live Tables.',
+    stack: ['Aecorsoft', 'Databricks', 'DLT', 'Python'],
+    metrics: [{ label: 'Commercial POCs used', value: '5+' }],
+    color: 'purple',
+    architecture: [
+      { layer: 'Ingestion', items: ['SAP', 'Aecorsoft'], color: '#7c6af7' },
+      { layer: 'Silver', items: ['DLT'], color: '#5a5070' },
+      { layer: 'Star schema', items: ['Unity Catalog'], color: '#9370db' },
+    ],
+  }
+]
+
+const SKILLS_EN = [
+  { category: 'Languages', items: ['Python', 'SQL', 'Terraform'] },
+  { category: 'Orchestration', items: ['StepFunction', 'Glue Workflow'] },
+  { category: 'Processing', items: ['Apache Spark', 'PyArrow', 'dbt'] },
+  { category: 'Cloud', items: ['AWS', 'Databricks'] },
+  { category: 'Storage', items: ['Delta Lake', 'Glue Catalog', 'Redshift'] }
+]
+
 function ArchDiagram({ layers }) {
   return (
     <div className={styles.arch}>
@@ -96,7 +158,7 @@ function ArchDiagram({ layers }) {
   )
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, language }) {
   const [expanded, setExpanded] = useState(false)
 
   const colorMap = {
@@ -138,12 +200,14 @@ function ProjectCard({ project }) {
           style={{ '--btn-color': c.accent }}
           onClick={() => setExpanded(!expanded)}
         >
-          {expanded ? '↑ Ocultar arquitetura' : '↓ Ver arquitetura'}
+          {expanded
+            ? `↑ ${language === 'en' ? 'Hide architecture' : 'Ocultar arquitetura'}`
+            : `↓ ${language === 'en' ? 'View architecture' : 'Ver arquitetura'}`}
         </button>
 
         {expanded && (
           <div className={styles.archWrap}>
-            <p className={styles.archTitle}>Diagrama de Arquitetura</p>
+            <p className={styles.archTitle}>{language === 'en' ? 'Architecture Diagram' : 'Diagrama de Arquitetura'}</p>
             <ArchDiagram layers={project.architecture} />
           </div>
         )}
@@ -161,27 +225,40 @@ function ProjectCard({ project }) {
 }
 
 export default function Home() {
+  const [language, setLanguage] = useState('pt')
+  const isEnglish = language === 'en'
+  const projects = isEnglish ? PROJECTS_EN : PROJECTS
+  const skills = isEnglish ? SKILLS_EN : SKILLS
+
+  useEffect(() => {
+    document.documentElement.lang = isEnglish ? 'en' : 'pt-BR'
+  }, [isEnglish])
+
   return (
     <>
       <Head>
-        <title>Portfólio — Engenheiro de Dados</title>
-        <meta name="description" content="Portfólio de projetos de Engenharia de Dados — arquiteturas, pipelines e plataformas de dados" />
-        <meta property="og:title" content="Portfólio — Engenheiro de Dados" />
-        <meta property="og:description" content="Arquiteturas e projetos de Engenharia de Dados" />
+        <title>{isEnglish ? 'Portfolio — Data Engineer' : 'Portfólio — Engenheiro de Dados'}</title>
+        <meta name="description" content={isEnglish ? 'Data Engineering project portfolio — architectures, pipelines and data platforms' : 'Portfólio de projetos de Engenharia de Dados — arquiteturas, pipelines e plataformas de dados'} />
+        <meta property="og:title" content={isEnglish ? 'Portfolio — Data Engineer' : 'Portfólio — Engenheiro de Dados'} />
+        <meta property="og:description" content={isEnglish ? 'Data Engineering architectures and projects' : 'Arquiteturas e projetos de Engenharia de Dados'} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <div className={styles.noise} aria-hidden />
 
       <nav className={styles.nav}>
-        <span className={styles.navLogo} aria-label="Portfólio">
+        <span className={styles.navLogo} aria-label={isEnglish ? 'Portfolio' : 'Portfólio'}>
           <span className={styles.navDot} />
           <span className="mono">eng.dados</span>
         </span>
         <div className={styles.navLinks}>
-          <a href="#projetos">Projetos</a>
+          <a href="#projetos">{isEnglish ? 'Projects' : 'Projetos'}</a>
           <a href="#skills">Skills</a>
-          <a href="mailto:pedroaquinodev@email.com" className={styles.navCta}>Contato</a>
+          <a href="mailto:pedroaquinodev@email.com" className={styles.navCta}>{isEnglish ? 'Contact' : 'Contato'}</a>
+          <div className={styles.languageSwitcher} aria-label="Language selector">
+            <button className={language === 'pt' ? styles.languageActive : styles.languageButton} onClick={() => setLanguage('pt')} aria-pressed={language === 'pt'}>PT</button>
+            <button className={language === 'en' ? styles.languageActive : styles.languageButton} onClick={() => setLanguage('en')} aria-pressed={language === 'en'}>EN</button>
+          </div>
         </div>
       </nav>
 
@@ -194,33 +271,33 @@ export default function Home() {
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <span className={styles.heroDot} />
-              Disponível para oportunidades PJ
+              {isEnglish ? 'Available for contract opportunities' : 'Disponível para oportunidades PJ'}
             </div>
             <h1 className={styles.heroTitle}>
-              Engenheiro<br />
-              <span className={styles.heroGradient}>de Dados</span>
+              {isEnglish ? <>Data<br /><span className={styles.heroGradient}>Engineer</span></> : <>Engenheiro<br /><span className={styles.heroGradient}>de Dados</span></>}
             </h1>
             <p className={styles.heroSub}>
-              Construo plataformas de dados escaláveis — de pipelines em tempo real a
-              lakehouses corporativos. Foco em arquiteturas que suportam decisões críticas de negócio.
+              {isEnglish
+                ? 'I build scalable data platforms — from real-time pipelines to enterprise lakehouses. I focus on architectures that support critical business decisions.'
+                : 'Construo plataformas de dados escaláveis — de pipelines em tempo real a lakehouses corporativos. Foco em arquiteturas que suportam decisões críticas de negócio.'}
             </p>
             <div className={styles.heroActions}>
               <a href="#projetos" className={styles.btnPrimary}>
-                Ver projetos
+                {isEnglish ? 'View projects' : 'Ver projetos'}
               </a>
 
               <a
                 href="mailto:pedroaquinodev@email.com"
                 className={styles.btnSecondary}
               >
-                Entre em contato
+                {isEnglish ? 'Get in touch' : 'Entre em contato'}
               </a>
             </div>
           </div>
 
           {/* Right - Certifications */}
           <div className={styles.certifications}>
-            <span className={styles.certTitle}>Certificações</span>
+            <span className={styles.certTitle}>{isEnglish ? 'Certifications' : 'Certificações'}</span>
 
             <div className={styles.certGrid}>
               <img
@@ -289,11 +366,11 @@ export default function Home() {
         <section id="projetos" className={styles.section}>
           <div className={styles.container}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionTag}>Projetos</span>
-              <h2 className={styles.sectionTitle}>Arquiteturas em produção</h2>
+              <span className={styles.sectionTag}>{isEnglish ? 'Projects' : 'Projetos'}</span>
+              <h2 className={styles.sectionTitle}>{isEnglish ? 'Architectures in production' : 'Arquiteturas em produção'}</h2>
             </div>
             <div className={styles.grid}>
-              {PROJECTS.map(p => <ProjectCard key={p.id} project={p} />)}
+              {projects.map(p => <ProjectCard key={p.id} project={p} language={language} />)}
             </div>
           </div>
         </section>
@@ -303,10 +380,10 @@ export default function Home() {
           <div className={styles.container}>
             <div className={styles.sectionHeader}>
               <span className={styles.sectionTag}>Stack</span>
-              <h2 className={styles.sectionTitle}>Ferramentas & tecnologias</h2>
+              <h2 className={styles.sectionTitle}>{isEnglish ? 'Tools & technologies' : 'Ferramentas & tecnologias'}</h2>
             </div>
             <div className={styles.skillsGrid}>
-              {SKILLS.map((s, i) => (
+              {skills.map((s, i) => (
                 <div key={i} className={styles.skillGroup}>
                   <h3 className={styles.skillCategory}>{s.category}</h3>
                   <div className={styles.skillItems}>
@@ -325,12 +402,12 @@ export default function Home() {
           <div className={styles.container}>
             <div className={styles.ctaBox}>
               <div className={styles.ctaGlow} aria-hidden />
-              <h2 className={styles.ctaTitle}>Quer construir algo juntos?</h2>
+              <h2 className={styles.ctaTitle}>{isEnglish ? 'Want to build something together?' : 'Quer construir algo juntos?'}</h2>
               <p className={styles.ctaDesc}>
-                Estou aberto a conversas sobre posições de engenharia de dados, arquitetura de dados ou consultoria.
+                {isEnglish ? 'I am open to conversations about data engineering, data architecture or consulting opportunities.' : 'Estou aberto a conversas sobre posições de engenharia de dados, arquitetura de dados ou consultoria.'}
               </p>
               <a href="mailto:pedroaquinodev@email.com" className={styles.btnPrimary}>
-                Falar comigo →
+                {isEnglish ? 'Talk to me →' : 'Falar comigo →'}
               </a>
             </div>
           </div>
@@ -340,7 +417,7 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.container}>
           <span className="mono" style={{ color: 'var(--text-3)', fontSize: '13px' }}>
-            Feito com Next.js · Hospedado na Vercel
+            {isEnglish ? 'Built with Next.js · Hosted on Vercel' : 'Feito com Next.js · Hospedado na Vercel'}
           </span>
         </div>
       </footer>
